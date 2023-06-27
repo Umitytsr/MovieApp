@@ -1,23 +1,36 @@
 package com.umitytsr.movieapp.ui.home
 
-import android.view.View
+import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import androidx.recyclerview.widget.RecyclerView.Adapter
+import com.bumptech.glide.Glide
+import com.umitytsr.movieapp.databinding.ItemRowMovieBinding
+import com.umitytsr.movieapp.domain.Extensions.format
+import com.umitytsr.movieapp.domain.model.Movie
+import com.umitytsr.movieapp.util.Constants
 
-class MovieAdapter : RecyclerView.Adapter<MovieAdapter.MovieViewHolder>(){
+class MovieAdapter(private val movies: List<Movie>)
+    : RecyclerView.Adapter<MovieAdapter.MovieViewHolder>(){
 
-    inner class MovieViewHolder(itemView: View): RecyclerView.ViewHolder(itemView)
+    inner class MovieViewHolder(private val binding: ItemRowMovieBinding): RecyclerView.ViewHolder(binding.root){
+        fun bind(movie: Movie) {
+            Glide.with(binding.root).load(Constants.IMAGE_URL.plus(movie.posterPath)).into(binding.imageView)
+            binding.voteAverageTV.text = movie.voteAverage.format(1)
+        }
+    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MovieViewHolder {
-        TODO("Not yet implemented")
+        val layoutInflater = LayoutInflater.from(parent.context)
+        val binding = ItemRowMovieBinding.inflate(layoutInflater)
+
+        return MovieViewHolder(binding)
     }
 
     override fun getItemCount(): Int {
-        TODO("Not yet implemented")
+        return movies.size
     }
 
     override fun onBindViewHolder(holder: MovieViewHolder, position: Int) {
-        TODO("Not yet implemented")
+        holder.bind(movies[position])
     }
 }
