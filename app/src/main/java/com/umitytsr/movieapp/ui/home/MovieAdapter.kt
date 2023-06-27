@@ -21,7 +21,7 @@ class MovieAdapter(private val movies: List<Movie>)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MovieViewHolder {
         val layoutInflater = LayoutInflater.from(parent.context)
-        val binding = ItemRowMovieBinding.inflate(layoutInflater)
+        val binding = ItemRowMovieBinding.inflate(layoutInflater,parent,false)
 
         return MovieViewHolder(binding)
     }
