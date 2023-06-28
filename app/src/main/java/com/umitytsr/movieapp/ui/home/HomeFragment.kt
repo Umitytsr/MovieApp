@@ -48,6 +48,11 @@ class HomeFragment : Fragment(), MovieAdapter.MovieItemClickListener {
                             initRecylerViewTvSeries(it)
                         }
                     }
+                    launch {
+                        propertiesActor.collectLatest {
+
+                        }
+                    }
                 }
             }
         }
