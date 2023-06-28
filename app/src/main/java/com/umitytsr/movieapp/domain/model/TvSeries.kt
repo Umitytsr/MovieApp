@@ -1,5 +1,9 @@
 package com.umitytsr.movieapp.domain.model
 
+import android.os.Parcelable
+import kotlinx.parcelize.Parcelize
+
+@Parcelize
 data class TvSeries(
     val backdropPath: String?,
     val firstAirDate: String?,
@@ -9,4 +13,4 @@ data class TvSeries(
     val overview: String?,
     val posterPath: String?,
     val voteAverage: Double?,
-)
+): Parcelable

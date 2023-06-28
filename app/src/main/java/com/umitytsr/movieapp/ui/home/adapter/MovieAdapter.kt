@@ -7,15 +7,25 @@ import com.bumptech.glide.Glide
 import com.umitytsr.movieapp.databinding.ItemRowMovieBinding
 import com.umitytsr.movieapp.domain.Extensions.format
 import com.umitytsr.movieapp.domain.model.Movie
+import com.umitytsr.movieapp.ui.home.HomeFragment
 import com.umitytsr.movieapp.util.Constants
 
-class MovieAdapter(private val movies: List<Movie>)
+class MovieAdapter(private val movies: List<Movie>, movieItemClickListener: HomeFragment)
     : RecyclerView.Adapter<MovieAdapter.MovieViewHolder>(){
+
+    private val movieItemClickListener : MovieItemClickListener
+
+    init {
+        this.movieItemClickListener = movieItemClickListener
+    }
 
     inner class MovieViewHolder(private val binding: ItemRowMovieBinding): RecyclerView.ViewHolder(binding.root){
         fun bind(movie: Movie) {
             Glide.with(binding.root).load(Constants.IMAGE_URL.plus(movie.posterPath)).into(binding.imageView)
             binding.voteAverageTV.text = movie.voteAverage?.format(1)
+            binding.cardView.setOnClickListener {
+                movieItemClickListener.movieIntemClicked(movie)
+            }
         }
     }
 
@@ -32,5 +42,9 @@ class MovieAdapter(private val movies: List<Movie>)
 
     override fun onBindViewHolder(holder: MovieViewHolder, position: Int) {
         holder.bind(movies[position])
+    }
+
+    interface MovieItemClickListener{
+        fun movieIntemClicked(movie: Movie)
     }
 }

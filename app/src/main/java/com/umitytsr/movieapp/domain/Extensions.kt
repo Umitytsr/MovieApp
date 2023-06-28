@@ -6,6 +6,8 @@ import com.umitytsr.movieapp.domain.model.Movie
 import com.umitytsr.movieapp.domain.model.TvSeries
 import java.text.DecimalFormat
 import java.text.DecimalFormatSymbols
+import java.text.ParseException
+import java.text.SimpleDateFormat
 import java.util.Locale
 
 fun List<ResultMovie>.toMovie(): List<Movie>{
@@ -43,5 +45,19 @@ fun Double.format(digits: Int): String {
     df.decimalFormatSymbols = DecimalFormatSymbols(Locale.US)
     df.maximumFractionDigits = digits
     return df.format(this)
+}
+
+fun getReformatDate(dateInString: String?): String {
+
+    return if (dateInString != null) {
+        val parser = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
+        val formatter = SimpleDateFormat("dd MMM yyyy", Locale.getDefault())
+        try {
+            val date = parser.parse(dateInString)
+            formatter.format(date!!)
+        } catch (e: ParseException) {
+            "-"
+        }
+    } else "-"
 }
 

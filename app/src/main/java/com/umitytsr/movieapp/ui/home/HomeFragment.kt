@@ -9,6 +9,7 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.umitytsr.movieapp.databinding.FragmentHomeBinding
@@ -21,7 +22,7 @@ import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
-class HomeFragment : Fragment() {
+class HomeFragment : Fragment(), MovieAdapter.MovieItemClickListener {
     private lateinit var binding: FragmentHomeBinding
     private val viewModel: HomeViewModel by viewModels()
     override fun onCreateView(
@@ -49,7 +50,7 @@ class HomeFragment : Fragment() {
     }
 
     private fun initRecylerViewMovie(movie: List<Movie>){
-        val _adapter = MovieAdapter(movie)
+        val _adapter = MovieAdapter(movie,this@HomeFragment)
         with(binding.populerMovieRecyclerView){
             adapter = _adapter
             layoutManager = LinearLayoutManager(requireContext(),RecyclerView.HORIZONTAL,false)
@@ -64,5 +65,11 @@ class HomeFragment : Fragment() {
             layoutManager = LinearLayoutManager(requireContext(),RecyclerView.HORIZONTAL,false)
             setHasFixedSize(true)
         }
+    }
+
+    override fun movieIntemClicked(movie: Movie) {
+        findNavController().navigate(
+            HomeFragmentDirections.actionHomeFragmentToDetailerFragment(movie,null)
+        )
     }
 }
