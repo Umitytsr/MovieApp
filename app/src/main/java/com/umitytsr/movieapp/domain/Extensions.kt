@@ -14,11 +14,10 @@ fun List<ResultMovie>.toMovie(): List<Movie>{
             backdropPath = it.backdropPath,
             genreİds = it.genreİds,
             id = it.id,
-            originalLanguage = it.originalLanguage,
-            originalTitle = it.originalTitle,
             overview = it.overview,
             posterPath = it.posterPath,
             releaseDate = it.releaseDate,
+            title = it.title,
             voteAverage = it.voteAverage
         )
     }
