@@ -1,4 +1,4 @@
-package com.umitytsr.movieapp.ui.home
+package com.umitytsr.movieapp.ui.home.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -15,7 +15,7 @@ class MovieAdapter(private val movies: List<Movie>)
     inner class MovieViewHolder(private val binding: ItemRowMovieBinding): RecyclerView.ViewHolder(binding.root){
         fun bind(movie: Movie) {
             Glide.with(binding.root).load(Constants.IMAGE_URL.plus(movie.posterPath)).into(binding.imageView)
-            binding.voteAverageTV.text = movie.voteAverage.format(1)
+            binding.voteAverageTV.text = movie.voteAverage?.format(1)
         }
     }
 

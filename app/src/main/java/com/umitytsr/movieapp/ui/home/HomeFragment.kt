@@ -11,9 +11,9 @@ import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.umitytsr.movieapp.data.model.movie.ResultMovie
 import com.umitytsr.movieapp.databinding.FragmentHomeBinding
 import com.umitytsr.movieapp.domain.model.Movie
+import com.umitytsr.movieapp.ui.home.adapter.MovieAdapter
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch

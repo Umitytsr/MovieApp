@@ -1,13 +1,12 @@
 package com.umitytsr.movieapp.domain.model
 
-data class Movie(
+data class TvSeries(
     val backdropPath: String?,
+    val firstAirDate: String?,
     val genreİds: List<Int>?,
     val id: Int?,
-    val originalLanguage: String?,
-    val originalTitle: String?,
+    val name: String?,
     val overview: String?,
     val posterPath: String?,
-    val releaseDate: String?,
     val voteAverage: Double?,
 )

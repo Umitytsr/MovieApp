@@ -28,12 +28,11 @@ class HomeViewModel @Inject constructor(private val movieAppRepository: MovieApp
         getMovieData()
     }
 
-    fun getMovieData() {
+    private fun getMovieData() {
         viewModelScope.launch {
-            movieAppRepository.getAllMovie().collect{
+            movieAppRepository.fetchAllMovie().collect{
                 _propertiesMovie.emit(it)
             }
         }
     }
-
 }
