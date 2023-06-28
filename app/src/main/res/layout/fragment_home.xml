@@ -43,7 +43,7 @@
         android:layout_marginStart="15dp"
         android:layout_marginTop="15dp"
         android:layout_marginEnd="15dp"
-        android:text="THE MOST POPULAR Tv-Series"
+        android:text="THE MOST POPULAR TV SERIES"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/populerMovieRecyclerView"

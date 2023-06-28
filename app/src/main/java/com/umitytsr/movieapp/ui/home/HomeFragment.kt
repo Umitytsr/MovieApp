@@ -38,11 +38,15 @@ class HomeFragment : Fragment(), MovieAdapter.MovieItemClickListener {
         viewLifecycleOwner.lifecycleScope.launch() {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED){
                 with(viewModel){
-                    propertiesMovie.collectLatest {
-                        initRecylerViewMovie(it)
+                    launch {
+                        propertiesMovie.collectLatest {
+                            initRecylerViewMovie(it)
+                        }
                     }
-                    propertiesTvSeries.collectLatest {
-                        initRecylerViewTvSeries(it)
+                    launch {
+                        propertiesTvSeries.collectLatest {
+                            initRecylerViewTvSeries(it)
+                        }
                     }
                 }
             }
