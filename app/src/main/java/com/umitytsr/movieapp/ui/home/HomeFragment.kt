@@ -13,8 +13,10 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.umitytsr.movieapp.databinding.FragmentHomeBinding
+import com.umitytsr.movieapp.domain.model.Actor
 import com.umitytsr.movieapp.domain.model.Movie
 import com.umitytsr.movieapp.domain.model.TvSeries
+import com.umitytsr.movieapp.ui.home.adapter.ActorAdapter
 import com.umitytsr.movieapp.ui.home.adapter.MovieAdapter
 import com.umitytsr.movieapp.ui.home.adapter.TvSeriesAdapter
 import dagger.hilt.android.AndroidEntryPoint
@@ -50,7 +52,7 @@ class HomeFragment : Fragment(), MovieAdapter.MovieItemClickListener {
                     }
                     launch {
                         propertiesActor.collectLatest {
-
+                            initRecyclerViewActor(it)
                         }
                     }
                 }
@@ -70,6 +72,15 @@ class HomeFragment : Fragment(), MovieAdapter.MovieItemClickListener {
     private fun initRecylerViewTvSeries(tvSeries: List<TvSeries>){
         val _adapter = TvSeriesAdapter(tvSeries)
         with(binding.populerTvSeriesRecyclerView){
+            adapter = _adapter
+            layoutManager = LinearLayoutManager(requireContext(),RecyclerView.HORIZONTAL,false)
+            setHasFixedSize(true)
+        }
+    }
+
+    private fun initRecyclerViewActor(actor: List<Actor>){
+        val _adapter = ActorAdapter(actor)
+        with(binding.populerActorRecyclerView){
             adapter = _adapter
             layoutManager = LinearLayoutManager(requireContext(),RecyclerView.HORIZONTAL,false)
             setHasFixedSize(true)
