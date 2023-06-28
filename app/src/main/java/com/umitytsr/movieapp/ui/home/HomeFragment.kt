@@ -13,7 +13,9 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.umitytsr.movieapp.databinding.FragmentHomeBinding
 import com.umitytsr.movieapp.domain.model.Movie
+import com.umitytsr.movieapp.domain.model.TvSeries
 import com.umitytsr.movieapp.ui.home.adapter.MovieAdapter
+import com.umitytsr.movieapp.ui.home.adapter.TvSeriesAdapter
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
@@ -32,18 +34,32 @@ class HomeFragment : Fragment() {
     }
 
     private fun collectData(){
-        lifecycleScope.launch() {
+        viewLifecycleOwner.lifecycleScope.launch() {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED){
-                viewModel.properties.collectLatest {
-                    initRecylerView(it)
+                with(viewModel){
+                    propertiesMovie.collectLatest {
+                        initRecylerViewMovie(it)
+                    }
+                    propertiesTvSeries.collectLatest {
+                        initRecylerViewTvSeries(it)
+                    }
                 }
             }
         }
     }
 
-    private fun initRecylerView(movie: List<Movie>){
+    private fun initRecylerViewMovie(movie: List<Movie>){
         val _adapter = MovieAdapter(movie)
         with(binding.populerMovieRecyclerView){
+            adapter = _adapter
+            layoutManager = LinearLayoutManager(requireContext(),RecyclerView.HORIZONTAL,false)
+            setHasFixedSize(true)
+        }
+    }
+
+    private fun initRecylerViewTvSeries(tvSeries: List<TvSeries>){
+        val _adapter = TvSeriesAdapter(tvSeries)
+        with(binding.populerTvSeriesRecyclerView){
             adapter = _adapter
             layoutManager = LinearLayoutManager(requireContext(),RecyclerView.HORIZONTAL,false)
             setHasFixedSize(true)

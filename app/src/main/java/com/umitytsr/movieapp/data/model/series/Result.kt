@@ -3,7 +3,7 @@ package com.umitytsr.movieapp.data.model.series
 
 import com.google.gson.annotations.SerializedName
 
-data class ResultTvSeries(
+data class Result(
     @SerializedName("backdrop_path")
     val backdropPath: String,
     @SerializedName("first_air_date")

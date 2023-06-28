@@ -15,7 +15,7 @@ class TvSeriesAdapter(private val tvSeries: List<TvSeries>)
     inner class TvSeriesViewHolder(private val binding: ItemRowMovieBinding)
         : RecyclerView.ViewHolder(binding.root){
             fun bind(tvSeries: TvSeries){
-                Glide.with(binding.root).load(Constants.IMAGE_URL.plus(tvSeries.posterPath)).load(binding.imageView)
+                Glide.with(binding.root).load(Constants.IMAGE_URL.plus(tvSeries.posterPath)).into(binding.imageView)
                 binding.voteAverageTV.text = tvSeries.voteAverage?.format(1)
             }
         }

@@ -1,7 +1,7 @@
 package com.umitytsr.movieapp.domain.Extensions
 
 import com.umitytsr.movieapp.data.model.movie.ResultMovie
-import com.umitytsr.movieapp.data.model.series.ResultTvSeries
+import com.umitytsr.movieapp.data.model.series.Result
 import com.umitytsr.movieapp.domain.model.Movie
 import com.umitytsr.movieapp.domain.model.TvSeries
 import java.text.DecimalFormat
@@ -24,7 +24,7 @@ fun List<ResultMovie>.toMovie(): List<Movie>{
     }
 }
 
-fun List<ResultTvSeries>.toTvSeries(): List<TvSeries>{
+fun List<Result>.toTvSeries(): List<TvSeries>{
     return this.map {
         TvSeries(
             backdropPath = it.backdropPath,
