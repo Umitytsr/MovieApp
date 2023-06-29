@@ -9,17 +9,20 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.umitytsr.movieapp.databinding.FragmentHomeBinding
 import com.umitytsr.movieapp.domain.model.Movie
+import com.umitytsr.movieapp.domain.model.TvSeries
 import com.umitytsr.movieapp.ui.home.adapter.MovieAdapter
+import com.umitytsr.movieapp.ui.home.adapter.TvSeriesAdapter
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
-class HomeFragment : Fragment() {
+class HomeFragment : Fragment(), MovieAdapter.MovieItemClickListener {
     private lateinit var binding: FragmentHomeBinding
     private val viewModel: HomeViewModel by viewModels()
     override fun onCreateView(
@@ -32,21 +35,45 @@ class HomeFragment : Fragment() {
     }
 
     private fun collectData(){
-        lifecycleScope.launch() {
+        viewLifecycleOwner.lifecycleScope.launch() {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED){
-                viewModel.properties.collectLatest {
-                    initRecylerView(it)
+                with(viewModel){
+                    launch {
+                        propertiesMovie.collectLatest {
+                            initRecylerViewMovie(it)
+                        }
+                    }
+                    launch {
+                        propertiesTvSeries.collectLatest {
+                            initRecylerViewTvSeries(it)
+                        }
+                    }
                 }
             }
         }
     }
 
-    private fun initRecylerView(movie: List<Movie>){
-        val _adapter = MovieAdapter(movie)
+    private fun initRecylerViewMovie(movie: List<Movie>){
+        val _adapter = MovieAdapter(movie,this@HomeFragment)
         with(binding.populerMovieRecyclerView){
             adapter = _adapter
             layoutManager = LinearLayoutManager(requireContext(),RecyclerView.HORIZONTAL,false)
             setHasFixedSize(true)
         }
+    }
+
+    private fun initRecylerViewTvSeries(tvSeries: List<TvSeries>){
+        val _adapter = TvSeriesAdapter(tvSeries)
+        with(binding.populerTvSeriesRecyclerView){
+            adapter = _adapter
+            layoutManager = LinearLayoutManager(requireContext(),RecyclerView.HORIZONTAL,false)
+            setHasFixedSize(true)
+        }
+    }
+
+    override fun movieIntemClicked(movie: Movie) {
+        findNavController().navigate(
+            HomeFragmentDirections.actionHomeFragmentToDetailerFragment(movie,null)
+        )
     }
 }

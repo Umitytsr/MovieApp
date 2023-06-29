@@ -8,14 +8,13 @@ import javax.inject.Inject
 
 class MovieAppRepository @Inject constructor(private val movieAppService: MovieAppService) {
 
-
     suspend fun fetchAllMovie() = flow {
-        val response = movieAppService.getAllMovie().results.toMovie()
-        emit(response)
+        val responseMovie = movieAppService.getAllMovie().results.toMovie()
+        emit(responseMovie)
     }
 
     suspend fun fetchAllTvSeries() = flow {
-        val response = movieAppService.getAllTvSeries().results.toTvSeries()
-        emit(response)
+        val responseTvSeries = movieAppService.getAllTvSeries().results.toTvSeries()
+        emit(responseTvSeries)
     }
 }

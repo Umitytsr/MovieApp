@@ -45,7 +45,6 @@ object NetworkModule {
     }
 
     @Provides
-    @Singleton
     fun provideMovieScopeService(retrofit: Retrofit): MovieAppService {
         return retrofit.create(MovieAppService::class.java)
     }
