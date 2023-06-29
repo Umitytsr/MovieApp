@@ -2,6 +2,8 @@ package com.umitytsr.movieapp.ui.home
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.umitytsr.movieapp.data.model.movie.MovieResponse
+import com.umitytsr.movieapp.data.model.series.SeriesResponse
 import com.umitytsr.movieapp.data.repo.MovieAppRepository
 import com.umitytsr.movieapp.domain.model.Movie
 import com.umitytsr.movieapp.domain.model.TvSeries
@@ -42,4 +44,5 @@ class HomeViewModel @Inject constructor(private val movieAppRepository: MovieApp
             }
         }
     }
+
 }
