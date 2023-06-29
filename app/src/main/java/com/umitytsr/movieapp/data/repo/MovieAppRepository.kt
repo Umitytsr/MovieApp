@@ -1,7 +1,6 @@
 package com.umitytsr.movieapp.data.repo
 
 import com.umitytsr.movieapp.data.service.MovieAppService
-import com.umitytsr.movieapp.domain.Extensions.toActor
 import com.umitytsr.movieapp.domain.Extensions.toMovie
 import com.umitytsr.movieapp.domain.Extensions.toTvSeries
 import kotlinx.coroutines.flow.flow
@@ -17,10 +16,5 @@ class MovieAppRepository @Inject constructor(private val movieAppService: MovieA
     suspend fun fetchAllTvSeries() = flow {
         val responseTvSeries = movieAppService.getAllTvSeries().results.toTvSeries()
         emit(responseTvSeries)
-    }
-
-    suspend fun fetchAllActor() = flow {
-        val responseActor = movieAppService.getAllActor().knownFor.toActor()
-        emit(responseActor)
     }
 }

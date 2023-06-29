@@ -3,7 +3,6 @@ package com.umitytsr.movieapp.ui.home
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.umitytsr.movieapp.data.repo.MovieAppRepository
-import com.umitytsr.movieapp.domain.model.Actor
 import com.umitytsr.movieapp.domain.model.Movie
 import com.umitytsr.movieapp.domain.model.TvSeries
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -23,7 +22,6 @@ class HomeViewModel @Inject constructor(private val movieAppRepository: MovieApp
     init {
         getMovieData()
         getTvSeriesData()
-        getActorData()
     }
 
     private fun getMovieData() {
@@ -41,17 +39,6 @@ class HomeViewModel @Inject constructor(private val movieAppRepository: MovieApp
         viewModelScope.launch(Dispatchers.IO){
             movieAppRepository.fetchAllTvSeries().collect{
                 _propertiesTvSeries.emit(it)
-            }
-        }
-    }
-
-    private val _propertiesActor = MutableStateFlow<List<Actor>>(mutableListOf())
-    val propertiesActor : StateFlow<List<Actor>> = _propertiesActor.asStateFlow()
-
-    private fun getActorData(){
-        viewModelScope.launch(Dispatchers.IO) {
-            movieAppRepository.fetchAllActor().collect{
-                _propertiesActor.emit(it)
             }
         }
     }

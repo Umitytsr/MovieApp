@@ -1,9 +1,7 @@
 package com.umitytsr.movieapp.domain.Extensions
 
-import com.umitytsr.movieapp.data.model.actor.KnownFor
 import com.umitytsr.movieapp.data.model.movie.ResultMovie
 import com.umitytsr.movieapp.data.model.series.Result
-import com.umitytsr.movieapp.domain.model.Actor
 import com.umitytsr.movieapp.domain.model.Movie
 import com.umitytsr.movieapp.domain.model.TvSeries
 import java.text.DecimalFormat
@@ -30,21 +28,6 @@ fun List<ResultMovie>.toMovie(): List<Movie>{
 fun List<Result>.toTvSeries(): List<TvSeries>{
     return this.map {
         TvSeries(
-            backdropPath = it.backdropPath,
-            firstAirDate = it.firstAirDate,
-            genreİds = it.genreİds,
-            id = it.id,
-            name = it.name,
-            overview = it.overview,
-            posterPath = it.posterPath,
-            voteAverage = it.voteAverage
-        )
-    }
-}
-
-fun List<KnownFor>.toActor(): List<Actor>{
-    return this.map {
-        Actor(
             backdropPath = it.backdropPath,
             firstAirDate = it.firstAirDate,
             genreİds = it.genreİds,

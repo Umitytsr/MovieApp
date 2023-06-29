@@ -1,9 +1,5 @@
 package com.umitytsr.movieapp.data.service
 
-
-import com.umitytsr.movieapp.data.model.actor.ActorResponse
-import com.umitytsr.movieapp.data.model.actor.KnownFor
-import com.umitytsr.movieapp.data.model.actor.Result
 import com.umitytsr.movieapp.data.model.movie.MovieResponse
 import com.umitytsr.movieapp.data.model.series.SeriesResponse
 import com.umitytsr.movieapp.util.Constants
@@ -16,6 +12,4 @@ interface MovieAppService {
     @GET(Constants.TV_SERIES)
     suspend fun getAllTvSeries() : SeriesResponse
 
-    @GET(Constants.ACTOR)
-    suspend fun getAllActor() : Result
 }
