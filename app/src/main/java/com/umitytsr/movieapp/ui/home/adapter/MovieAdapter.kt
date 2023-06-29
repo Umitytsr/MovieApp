@@ -22,9 +22,11 @@ class MovieAdapter(private val movies: List<Movie>, movieItemClickListener: Home
     inner class MovieViewHolder(private val binding: ItemRowMovieBinding): RecyclerView.ViewHolder(binding.root){
         fun bind(movie: Movie) {
             Glide.with(binding.root).load(Constants.IMAGE_URL.plus(movie.posterPath)).into(binding.imageView)
-            binding.voteAverageTV.text = movie.voteAverage?.format(1)
-            binding.cardView.setOnClickListener {
-                movieItemClickListener.movieIntemClicked(movie)
+            with(binding){
+                voteAverageTV.text = movie.voteAverage?.format(1)
+                cardView.setOnClickListener {
+                    movieItemClickListener.movieItemClicked(movie)
+                }
             }
         }
     }
@@ -45,6 +47,6 @@ class MovieAdapter(private val movies: List<Movie>, movieItemClickListener: Home
     }
 
     interface MovieItemClickListener{
-        fun movieIntemClicked(movie: Movie)
+        fun movieItemClicked(movie: Movie)
     }
 }

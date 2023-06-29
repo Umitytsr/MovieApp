@@ -22,7 +22,8 @@ import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
-class HomeFragment : Fragment(), MovieAdapter.MovieItemClickListener {
+class HomeFragment : Fragment(), MovieAdapter.MovieItemClickListener,
+    TvSeriesAdapter.TvSeriesItemClickListener {
     private lateinit var binding: FragmentHomeBinding
     private val viewModel: HomeViewModel by viewModels()
     override fun onCreateView(
@@ -63,7 +64,7 @@ class HomeFragment : Fragment(), MovieAdapter.MovieItemClickListener {
     }
 
     private fun initRecylerViewTvSeries(tvSeries: List<TvSeries>){
-        val _adapter = TvSeriesAdapter(tvSeries)
+        val _adapter = TvSeriesAdapter(tvSeries,this@HomeFragment)
         with(binding.populerTvSeriesRecyclerView){
             adapter = _adapter
             layoutManager = LinearLayoutManager(requireContext(),RecyclerView.HORIZONTAL,false)
@@ -71,9 +72,15 @@ class HomeFragment : Fragment(), MovieAdapter.MovieItemClickListener {
         }
     }
 
-    override fun movieIntemClicked(movie: Movie) {
+    override fun movieItemClicked(movie: Movie) {
         findNavController().navigate(
             HomeFragmentDirections.actionHomeFragmentToDetailerFragment(movie,null)
+        )
+    }
+
+    override fun tvSeriesItemClicked(tvSeries: TvSeries) {
+        findNavController().navigate(
+            HomeFragmentDirections.actionHomeFragmentToDetailerFragment(null,tvSeries)
         )
     }
 }
