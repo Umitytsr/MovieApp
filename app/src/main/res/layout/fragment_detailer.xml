@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/detailerFragment"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/black"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".ui.detailer.DetailerFragment">
 
     <ImageView
@@ -22,15 +23,14 @@
         android:layout_marginStart="15dp"
         android:layout_marginTop="15dp"
         android:layout_marginEnd="15dp"
-        android:textSize="25sp"
-        android:textColor="@color/white"
-        android:text="FAST X"
-        android:textStyle="bold"
         android:gravity="center"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/backdropImageView"
+        android:text="FAST X"
+        android:textColor="@color/white"
+        android:textSize="25sp"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
-        />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/backdropImageView" />
 
     <TextView
         android:id="@+id/overview"
@@ -40,12 +40,11 @@
         android:layout_marginTop="15dp"
         android:layout_marginEnd="15dp"
         android:maxLines="14"
-        android:textSize="18sp"
         android:textColor="@color/white"
-        app:layout_constraintStart_toStartOf="parent"
+        android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/title"
-        />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/title" />
 
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/voteCardView"
@@ -83,10 +82,10 @@
             android:id="@+id/releaseDate"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:gravity="center"
-            android:textColor="@color/red"
             android:layout_marginStart="5dp"
             android:layout_marginEnd="5dp"
+            android:gravity="center"
+            android:textColor="@color/red"
             android:textSize="16sp"
             tools:text="04/05/2023" />
     </com.google.android.material.card.MaterialCardView>
