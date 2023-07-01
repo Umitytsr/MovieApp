@@ -14,16 +14,12 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.umitytsr.movieapp.databinding.FragmentHomeBinding
 import com.umitytsr.movieapp.domain.model.Movie
-import com.umitytsr.movieapp.domain.model.TvSeries
-import com.umitytsr.movieapp.ui.home.adapter.MovieAdapter
-import com.umitytsr.movieapp.ui.home.adapter.TvSeriesAdapter
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
-class HomeFragment : Fragment(), MovieAdapter.MovieItemClickListener,
-    TvSeriesAdapter.TvSeriesItemClickListener {
+class HomeFragment : Fragment(), MovieAdapter.MovieItemClickListener{
     private lateinit var binding: FragmentHomeBinding
     private val viewModel: HomeViewModel by viewModels()
     override fun onCreateView(
@@ -63,8 +59,8 @@ class HomeFragment : Fragment(), MovieAdapter.MovieItemClickListener,
         }
     }
 
-    private fun initRecylerViewTvSeries(tvSeries: List<TvSeries>){
-        val _adapter = TvSeriesAdapter(tvSeries,this@HomeFragment)
+    private fun initRecylerViewTvSeries(tvSeries: List<Movie>){
+        val _adapter = MovieAdapter(tvSeries,this@HomeFragment)
         with(binding.populerTvSeriesRecyclerView){
             adapter = _adapter
             layoutManager = LinearLayoutManager(requireContext(),RecyclerView.HORIZONTAL,false)
@@ -72,15 +68,10 @@ class HomeFragment : Fragment(), MovieAdapter.MovieItemClickListener,
         }
     }
 
+
     override fun movieItemClicked(movie: Movie) {
         findNavController().navigate(
-            HomeFragmentDirections.actionHomeFragmentToDetailerFragment(movie,null)
-        )
-    }
-
-    override fun tvSeriesItemClicked(tvSeries: TvSeries) {
-        findNavController().navigate(
-            HomeFragmentDirections.actionHomeFragmentToDetailerFragment(null,tvSeries)
+            HomeFragmentDirections.actionHomeFragmentToDetailerFragment(movie)
         )
     }
 }

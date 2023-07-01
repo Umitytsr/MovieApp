@@ -6,8 +6,6 @@ import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import com.umitytsr.movieapp.data.model.movie.MovieResponse
 import com.umitytsr.movieapp.data.model.series.SeriesResponse
-import com.umitytsr.movieapp.domain.model.Movie
-import com.umitytsr.movieapp.domain.model.TvSeries
 
 @Dao
 interface MovieDao {

@@ -24,11 +24,6 @@
             app:argType="com.umitytsr.movieapp.domain.model.Movie"
             app:nullable="true"
             android:defaultValue="@null" />
-        <argument
-            android:name="tvSeries"
-            app:argType="com.umitytsr.movieapp.domain.model.TvSeries"
-            app:nullable="true"
-            android:defaultValue="@null" />
     </fragment>
     <fragment
         android:id="@+id/favoriteFragment"

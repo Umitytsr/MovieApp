@@ -1,4 +1,4 @@
-package com.umitytsr.movieapp.ui.home.adapter
+package com.umitytsr.movieapp.ui.home
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -7,7 +7,6 @@ import com.bumptech.glide.Glide
 import com.umitytsr.movieapp.databinding.ItemRowMovieBinding
 import com.umitytsr.movieapp.domain.Extensions.format
 import com.umitytsr.movieapp.domain.model.Movie
-import com.umitytsr.movieapp.ui.home.HomeFragment
 import com.umitytsr.movieapp.util.Constants
 
 class MovieAdapter(private val movies: List<Movie>, movieItemClickListener: HomeFragment)

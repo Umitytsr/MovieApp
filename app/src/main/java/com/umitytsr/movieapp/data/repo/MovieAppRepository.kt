@@ -6,7 +6,6 @@ import com.umitytsr.movieapp.data.source.remote.MovieAppRemoteDataSource
 import com.umitytsr.movieapp.domain.Extensions.toMovie
 import com.umitytsr.movieapp.domain.Extensions.toTvSeries
 import com.umitytsr.movieapp.domain.model.Movie
-import com.umitytsr.movieapp.domain.model.TvSeries
 import com.umitytsr.movieapp.util.CheckInternet
 import dagger.hilt.android.qualifiers.ApplicationContext
 import kotlinx.coroutines.flow.Flow
@@ -31,7 +30,7 @@ class MovieAppRepository @Inject constructor(
         }
     }
 
-    suspend fun fetchAllTvSeries():Flow<List<TvSeries>> = flow {
+    suspend fun fetchAllTvSeries():Flow<List<Movie>> = flow {
         if (CheckInternet.isInternetAvailable(context)){
             val propertiesTvSeriesFromApi = remoteDataSource.getAllTvSeriesProperties()
             localDataSource.insertTvSeriesProperties(propertiesTvSeriesFromApi)

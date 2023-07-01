@@ -3,8 +3,6 @@ package com.umitytsr.movieapp.data.source.local
 import com.umitytsr.movieapp.data.db.MovieDao
 import com.umitytsr.movieapp.data.model.movie.MovieResponse
 import com.umitytsr.movieapp.data.model.series.SeriesResponse
-import com.umitytsr.movieapp.domain.model.Movie
-import com.umitytsr.movieapp.domain.model.TvSeries
 import javax.inject.Inject
 
 class MovieAppLocalDataSource @Inject constructor(private val movieDao: MovieDao) {

@@ -1,6 +1,5 @@
 package com.umitytsr.movieapp.data.model.series
 
-
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import com.google.gson.annotations.SerializedName

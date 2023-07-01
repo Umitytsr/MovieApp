@@ -25,7 +25,7 @@ class DetailerFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
+        /*
         if (args.movie != null) {
             binding.apply {
                 title.text = args.movie?.title
@@ -45,5 +45,7 @@ class DetailerFragment : Fragment() {
             Glide.with(requireContext()).load(Constants.IMAGE_URL.plus(args.tvSeries?.backdropPath))
                 .into(binding.backdropImageView)
         }
+
+         */
     }
 }

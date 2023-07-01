@@ -3,7 +3,6 @@ package com.umitytsr.movieapp.domain.Extensions
 import com.umitytsr.movieapp.data.model.movie.ResultMovie
 import com.umitytsr.movieapp.data.model.series.Result
 import com.umitytsr.movieapp.domain.model.Movie
-import com.umitytsr.movieapp.domain.model.TvSeries
 import java.text.DecimalFormat
 import java.text.DecimalFormatSymbols
 import java.text.ParseException
@@ -25,16 +24,16 @@ fun List<ResultMovie>.toMovie(): List<Movie>{
     }
 }
 
-fun List<Result>.toTvSeries(): List<TvSeries>{
+fun List<Result>.toTvSeries(): List<Movie>{
     return this.map {
-        TvSeries(
+        Movie(
             backdropPath = it.backdropPath,
-            firstAirDate = it.firstAirDate,
             genreİds = it.genreİds,
             id = it.id,
-            name = it.name,
             overview = it.overview,
             posterPath = it.posterPath,
+            releaseDate = it.firstAirDate,
+            title = it.name,
             voteAverage = it.voteAverage
         )
     }
