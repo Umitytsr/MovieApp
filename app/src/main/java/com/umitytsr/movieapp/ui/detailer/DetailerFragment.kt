@@ -25,27 +25,13 @@ class DetailerFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        /*
-        if (args.movie != null) {
-            binding.apply {
-                title.text = args.movie?.title
-                overview.text = args.movie?.overview
-                voteAverage.text = args.movie?.voteAverage?.format(1)
-                releaseDate.text = getReformatDate(args.movie?.releaseDate)
-            }
-            Glide.with(requireContext()).load(Constants.IMAGE_URL.plus(args.movie?.backdropPath))
-                .into(binding.backdropImageView)
-        }else{
-            with(binding){
-                title.text = args.tvSeries?.name
-                overview.text = args.tvSeries?.overview
-                voteAverage.text = args.tvSeries?.voteAverage?.format(1)
-                releaseDate.text = getReformatDate(args.tvSeries?.firstAirDate)
-            }
-            Glide.with(requireContext()).load(Constants.IMAGE_URL.plus(args.tvSeries?.backdropPath))
-                .into(binding.backdropImageView)
+        binding.apply {
+            title.text = args.movie?.title
+            overview.text = args.movie?.overview
+            voteAverage.text = args.movie?.voteAverage?.format(1)
+            releaseDate.text = getReformatDate(args.movie?.releaseDate)
         }
-
-         */
+        Glide.with(requireContext()).load(Constants.IMAGE_URL.plus(args.movie?.backdropPath))
+            .into(binding.backdropImageView)
     }
 }
