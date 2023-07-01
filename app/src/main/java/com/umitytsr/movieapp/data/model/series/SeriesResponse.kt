@@ -10,7 +10,6 @@ import com.google.gson.annotations.SerializedName
 data class SeriesResponse(
     @SerializedName("page")
     val page: Int,
-    @Embedded
     @SerializedName("results")
     val results: List<Result>,
     @SerializedName("total_pages")

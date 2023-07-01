@@ -5,8 +5,9 @@ import com.umitytsr.movieapp.data.model.movie.MovieResponse
 import com.umitytsr.movieapp.data.model.series.SeriesResponse
 import com.umitytsr.movieapp.domain.model.Movie
 import com.umitytsr.movieapp.domain.model.TvSeries
+import javax.inject.Inject
 
-class MovieAppLocalDataSource(private val movieDao: MovieDao) {
+class MovieAppLocalDataSource @Inject constructor(private val movieDao: MovieDao) {
 
     suspend fun insertMovieProperties(movieProperties: MovieResponse){
         movieDao.insertAllMovieProperties(movieProperties)

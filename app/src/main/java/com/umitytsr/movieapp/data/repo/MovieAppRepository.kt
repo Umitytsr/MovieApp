@@ -8,11 +8,13 @@ import com.umitytsr.movieapp.domain.Extensions.toTvSeries
 import com.umitytsr.movieapp.domain.model.Movie
 import com.umitytsr.movieapp.domain.model.TvSeries
 import com.umitytsr.movieapp.util.CheckInternet
+import dagger.hilt.android.qualifiers.ApplicationContext
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
+import javax.inject.Inject
 
-class MovieAppRepository (
-    private val context: Context,
+class MovieAppRepository @Inject constructor(
+    @ApplicationContext private val context: Context,
     private val remoteDataSource: MovieAppRemoteDataSource,
     private val localDataSource: MovieAppLocalDataSource
     ) {
