@@ -1,8 +1,10 @@
 package com.umitytsr.movieapp.data.model.series
 
-
+import androidx.room.Entity
+import androidx.room.PrimaryKey
 import com.google.gson.annotations.SerializedName
 
+@Entity
 data class Result(
     @SerializedName("backdrop_path")
     val backdropPath: String,
@@ -29,5 +31,7 @@ data class Result(
     @SerializedName("vote_average")
     val voteAverage: Double,
     @SerializedName("vote_count")
-    val voteCount: Int
+    val voteCount: Int,
+    @PrimaryKey(autoGenerate = true)
+    val idTvSeriesResult: Int = 1,
 )

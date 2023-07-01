@@ -31,6 +31,7 @@ class DetailerFragment : Fragment() {
             voteAverage.text = args.movie?.voteAverage?.format(1)
             releaseDate.text = getReformatDate(args.movie?.releaseDate)
         }
-        Glide.with(requireContext()).load(Constants.IMAGE_URL.plus(args.movie?.backdropPath)).into(binding.backdropImageView)
+        Glide.with(requireContext()).load(Constants.IMAGE_URL.plus(args.movie?.backdropPath))
+            .into(binding.backdropImageView)
     }
 }

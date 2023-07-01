@@ -1,8 +1,10 @@
 package com.umitytsr.movieapp.data.model.movie
 
-
+import androidx.room.Entity
+import androidx.room.PrimaryKey
 import com.google.gson.annotations.SerializedName
 
+@Entity
 data class ResultMovie(
     @SerializedName("adult")
     val adult: Boolean,
@@ -31,5 +33,7 @@ data class ResultMovie(
     @SerializedName("vote_average")
     val voteAverage: Double,
     @SerializedName("vote_count")
-    val voteCount: Int
+    val voteCount: Int,
+    @PrimaryKey(autoGenerate = true)
+    val idResultMovie: Int = 1,
 )

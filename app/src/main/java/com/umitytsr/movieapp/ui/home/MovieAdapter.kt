@@ -1,4 +1,4 @@
-package com.umitytsr.movieapp.ui.home.adapter
+package com.umitytsr.movieapp.ui.home
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -7,7 +7,6 @@ import com.bumptech.glide.Glide
 import com.umitytsr.movieapp.databinding.ItemRowMovieBinding
 import com.umitytsr.movieapp.domain.Extensions.format
 import com.umitytsr.movieapp.domain.model.Movie
-import com.umitytsr.movieapp.ui.home.HomeFragment
 import com.umitytsr.movieapp.util.Constants
 
 class MovieAdapter(private val movies: List<Movie>, movieItemClickListener: HomeFragment)
@@ -22,9 +21,11 @@ class MovieAdapter(private val movies: List<Movie>, movieItemClickListener: Home
     inner class MovieViewHolder(private val binding: ItemRowMovieBinding): RecyclerView.ViewHolder(binding.root){
         fun bind(movie: Movie) {
             Glide.with(binding.root).load(Constants.IMAGE_URL.plus(movie.posterPath)).into(binding.imageView)
-            binding.voteAverageTV.text = movie.voteAverage?.format(1)
-            binding.cardView.setOnClickListener {
-                movieItemClickListener.movieIntemClicked(movie)
+            with(binding){
+                voteAverageTV.text = movie.voteAverage?.format(1)
+                cardView.setOnClickListener {
+                    movieItemClickListener.movieItemClicked(movie)
+                }
             }
         }
     }
@@ -45,6 +46,6 @@ class MovieAdapter(private val movies: List<Movie>, movieItemClickListener: Home
     }
 
     interface MovieItemClickListener{
-        fun movieIntemClicked(movie: Movie)
+        fun movieItemClicked(movie: Movie)
     }
 }
