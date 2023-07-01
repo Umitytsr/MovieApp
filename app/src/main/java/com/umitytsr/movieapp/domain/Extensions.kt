@@ -1,5 +1,6 @@
 package com.umitytsr.movieapp.domain.Extensions
 
+import com.umitytsr.movieapp.data.model.favorite.Favorite
 import com.umitytsr.movieapp.data.model.movie.ResultMovie
 import com.umitytsr.movieapp.data.model.series.Result
 import com.umitytsr.movieapp.domain.model.Movie
@@ -27,6 +28,36 @@ fun List<ResultMovie>.toMovie(): List<Movie>{
 fun List<Result>.toTvSeries(): List<Movie>{
     return this.map {
         Movie(
+            backdropPath = it.backdropPath,
+            genreİds = it.genreİds,
+            id = it.id,
+            overview = it.overview,
+            posterPath = it.posterPath,
+            releaseDate = it.firstAirDate,
+            title = it.name,
+            voteAverage = it.voteAverage
+        )
+    }
+}
+
+fun List<ResultMovie>.toFavoriteMovie(): List<Favorite>{
+    return this.map {
+        Favorite(
+            backdropPath = it.backdropPath,
+            genreİds = it.genreİds,
+            id = it.id,
+            overview = it.overview,
+            posterPath = it.posterPath,
+            releaseDate = it.releaseDate,
+            title = it.title,
+            voteAverage = it.voteAverage
+        )
+    }
+}
+
+fun List<Result>.toFavoriteTvSeries(): List<Favorite>{
+    return this.map {
+        Favorite(
             backdropPath = it.backdropPath,
             genreİds = it.genreİds,
             id = it.id,

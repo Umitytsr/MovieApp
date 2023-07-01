@@ -10,7 +10,7 @@ import com.umitytsr.movieapp.data.model.series.SeriesResponse
 import com.umitytsr.movieapp.util.DataBaseConverter
 
 @Database(
-    entities = [MovieResponse::class,ResultMovie::class,SeriesResponse::class,Result::class],
+    entities = [MovieResponse::class, ResultMovie::class, SeriesResponse::class, Result::class],
     version = 1,
     exportSchema = false
 )

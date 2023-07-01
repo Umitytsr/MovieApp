@@ -11,7 +11,7 @@ class MovieAppLocalDataSource @Inject constructor(private val movieDao: MovieDao
         movieDao.insertAllMovieProperties(movieProperties)
     }
 
-    suspend fun getAllMoviePropertiesFromDb(): MovieResponse{
+    suspend fun getAllMoviePropertiesFromDb(): MovieResponse {
         return movieDao.getAllMovie()
     }
 
@@ -19,7 +19,7 @@ class MovieAppLocalDataSource @Inject constructor(private val movieDao: MovieDao
         movieDao.insertAllTvSerieProperties(tvSeriesProperties)
     }
 
-    suspend fun getAllTvSeriesPropertiesFromDb(): SeriesResponse{
+    suspend fun getAllTvSeriesPropertiesFromDb(): SeriesResponse {
         return movieDao.getAllTvSeries()
     }
 }
