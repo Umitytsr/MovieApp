@@ -22,7 +22,7 @@ class MovieAppRepository @Inject constructor(
         if (CheckInternet.isInternetAvailable(context)){
             val propertiesMovieFromApi = remoteDataSource.getAllMovieProperties()
             localDataSource.insertMovieProperties(propertiesMovieFromApi)
-            val changeMovie = remoteDataSource.getAllMovieProperties().results.toMovie()
+            val changeMovie = propertiesMovieFromApi.results.toMovie()
             emit(changeMovie)
         }else{
             val localMovie = localDataSource.getAllMoviePropertiesFromDb().results.toMovie()
@@ -34,7 +34,7 @@ class MovieAppRepository @Inject constructor(
         if (CheckInternet.isInternetAvailable(context)){
             val propertiesTvSeriesFromApi = remoteDataSource.getAllTvSeriesProperties()
             localDataSource.insertTvSeriesProperties(propertiesTvSeriesFromApi)
-            val changeTvSerie = remoteDataSource.getAllTvSeriesProperties().results.toTvSeries()
+            val changeTvSerie = propertiesTvSeriesFromApi.results.toTvSeries()
             emit(changeTvSerie)
         }else{
             val localTvSerie = localDataSource.getAllTvSeriesPropertiesFromDb().results.toTvSeries()
