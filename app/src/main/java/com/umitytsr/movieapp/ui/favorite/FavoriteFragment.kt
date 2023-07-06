@@ -6,7 +6,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.umitytsr.movieapp.databinding.FragmentFavoriteBinding
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class FavoriteFragment : Fragment() {
     private lateinit var binding: FragmentFavoriteBinding
     override fun onCreateView(

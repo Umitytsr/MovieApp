@@ -22,5 +22,4 @@ interface MovieDao {
 
     @Query("SELECT * FROM tv_series_response")
     suspend fun getAllTvSeries() : SeriesResponse
-
 }
