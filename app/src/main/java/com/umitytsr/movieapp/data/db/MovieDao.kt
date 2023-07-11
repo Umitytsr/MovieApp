@@ -1,11 +1,14 @@
 package com.umitytsr.movieapp.data.db
 
 import androidx.room.Dao
+import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
+import com.umitytsr.movieapp.data.model.favorite.Favorite
 import com.umitytsr.movieapp.data.model.movie.MovieResponse
 import com.umitytsr.movieapp.data.model.series.SeriesResponse
+import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface MovieDao {
@@ -22,4 +25,17 @@ interface MovieDao {
 
     @Query("SELECT * FROM tv_series_response")
     suspend fun getAllTvSeries() : SeriesResponse
+
+    @Query("SELECT * FROM favorite")
+    suspend fun getAllFavorite() : List<Favorite>
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    suspend fun insertFavoriteProperties(propertiesFavorite: Favorite)
+
+    @Delete
+    suspend fun deleteFavorite(propertiesFavorite: Favorite)
+
+    @Query("SELECT EXISTS (SELECT * FROM favorite WHERE id= :id)")
+    suspend fun isFavorite(id:Int) : Boolean
+
 }

@@ -53,17 +53,5 @@
             app:layout_constraintTop_toTopOf="parent"
             tools:srcCompat="@tools:sample/avatars" />
 
-        <CheckBox
-            android:id="@+id/addFavorite"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:layout_margin="7dp"
-            android:layout_marginTop="7dp"
-            android:layout_marginEnd="7dp"
-            android:background="@drawable/radio_flat_selector"
-            android:button="@android:color/transparent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
     </androidx.constraintlayout.widget.ConstraintLayout>
 </com.google.android.material.card.MaterialCardView>

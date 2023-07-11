@@ -3,6 +3,7 @@ package com.umitytsr.movieapp.util
 import androidx.room.TypeConverter
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
+import com.umitytsr.movieapp.data.model.favorite.Favorite
 import com.umitytsr.movieapp.data.model.movie.ResultMovie
 import com.umitytsr.movieapp.data.model.series.Result
 
@@ -62,6 +63,17 @@ class DataBaseConverter {
     @TypeConverter
     fun fromListResult(list: List<Result?>): String {
         return gson.toJson(list)
+    }
+
+    @TypeConverter
+    fun fromFavoriteListToString(value: List<Favorite?>?): String {
+        return gson.toJson(value)
+    }
+
+    @TypeConverter
+    fun fromStringToFavoriteList(value: String): List<Favorite?> {
+        val listType = object : TypeToken<List<Favorite?>>() {}.type
+        return gson.fromJson(value, listType)
     }
 
     @TypeConverter

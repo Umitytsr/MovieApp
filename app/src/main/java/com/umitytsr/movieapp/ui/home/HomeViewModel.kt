@@ -2,7 +2,9 @@ package com.umitytsr.movieapp.ui.home
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.umitytsr.movieapp.data.model.favorite.Favorite
 import com.umitytsr.movieapp.data.repo.MovieAppRepository
+import com.umitytsr.movieapp.domain.Extensions.toFavorite
 import com.umitytsr.movieapp.domain.model.Movie
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
@@ -41,5 +43,4 @@ class HomeViewModel @Inject constructor(private val movieAppRepository: MovieApp
             }
         }
     }
-
 }
