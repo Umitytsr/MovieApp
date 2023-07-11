@@ -16,6 +16,7 @@ import com.umitytsr.movieapp.databinding.FragmentHomeBinding
 import com.umitytsr.movieapp.domain.model.Movie
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
+import kotlinx.coroutines.flow.filter
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
@@ -66,7 +67,6 @@ class HomeFragment : Fragment(), MovieAdapter.MovieItemClickListener{
                 setHasFixedSize(true)
             }
         }
-
     }
 
     override fun movieItemClicked(movie: Movie) {

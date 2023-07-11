@@ -3,6 +3,7 @@ package com.umitytsr.movieapp.data.db
 import androidx.room.Database
 import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
+import com.umitytsr.movieapp.data.model.favorite.Favorite
 import com.umitytsr.movieapp.data.model.movie.MovieResponse
 import com.umitytsr.movieapp.data.model.movie.ResultMovie
 import com.umitytsr.movieapp.data.model.series.Result
@@ -13,7 +14,8 @@ import com.umitytsr.movieapp.util.DataBaseConverter
     entities = [MovieResponse::class,
         ResultMovie::class,
         SeriesResponse::class,
-        Result::class],
+        Result::class,
+        Favorite::class],
     version = 1,
     exportSchema = false
 )

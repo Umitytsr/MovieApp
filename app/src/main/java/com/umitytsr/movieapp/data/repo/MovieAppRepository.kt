@@ -1,8 +1,10 @@
 package com.umitytsr.movieapp.data.repo
 
 import android.content.Context
+import com.umitytsr.movieapp.data.model.favorite.Favorite
 import com.umitytsr.movieapp.data.source.local.MovieAppLocalDataSource
 import com.umitytsr.movieapp.data.source.remote.MovieAppRemoteDataSource
+import com.umitytsr.movieapp.domain.Extensions.toFavorite
 import com.umitytsr.movieapp.domain.Extensions.toMovie
 import com.umitytsr.movieapp.domain.Extensions.toTvSeries
 import com.umitytsr.movieapp.domain.model.Movie
@@ -24,21 +26,37 @@ class MovieAppRepository @Inject constructor(
             localDataSource.insertMovieProperties(propertiesMovieFromApi)
             val changeMovie = propertiesMovieFromApi.results.toMovie()
             emit(changeMovie)
-        }else{
+        } else {
             val localMovie = localDataSource.getAllMoviePropertiesFromDb().results.toMovie()
             emit(localMovie)
         }
     }
 
-    suspend fun fetchAllTvSeries():Flow<List<Movie>> = flow {
-        if (CheckInternet.isInternetAvailable(context)){
+    suspend fun fetchAllTvSeries(): Flow<List<Movie>> = flow {
+        if (CheckInternet.isInternetAvailable(context)) {
             val propertiesTvSeriesFromApi = remoteDataSource.getAllTvSeriesProperties()
             localDataSource.insertTvSeriesProperties(propertiesTvSeriesFromApi)
             val changeTvSerie = propertiesTvSeriesFromApi.results.toTvSeries()
             emit(changeTvSerie)
-        }else{
+        } else {
             val localTvSerie = localDataSource.getAllTvSeriesPropertiesFromDb().results.toTvSeries()
             emit(localTvSerie)
         }
+    }
+
+    fun allFavorites(): Flow<List<Favorite>> = flow {
+        emit(localDataSource.getAllFavoritePropertiesFromDb())
+    }
+
+    suspend fun addMovieToFavorites(favorite: Favorite) {
+        localDataSource.insertFavoriteProperties(favorite)
+    }
+
+    suspend fun removeMovieFromFavorites(favorite: Favorite) {
+        localDataSource.deleteFavoriteProperties(favorite)
+    }
+
+    fun isFavorite(id: Int): Flow<Boolean> = flow {
+        emit(localDataSource.isFavorite(id))
     }
 }

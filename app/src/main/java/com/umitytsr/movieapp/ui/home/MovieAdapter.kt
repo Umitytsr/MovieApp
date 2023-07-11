@@ -9,19 +9,14 @@ import com.umitytsr.movieapp.domain.Extensions.format
 import com.umitytsr.movieapp.domain.model.Movie
 import com.umitytsr.movieapp.util.Constants
 
-class MovieAdapter(private val movies: List<Movie>, movieItemClickListener: HomeFragment)
+class MovieAdapter(private val movies: List<Movie>,private val movieItemClickListener: MovieItemClickListener)
     : RecyclerView.Adapter<MovieAdapter.MovieViewHolder>(){
 
-    private val movieItemClickListener : MovieItemClickListener
-
-    init {
-        this.movieItemClickListener = movieItemClickListener
-    }
 
     inner class MovieViewHolder(private val binding: ItemRowMovieBinding): RecyclerView.ViewHolder(binding.root){
         fun bind(movie: Movie) {
             Glide.with(binding.root).load(Constants.IMAGE_URL.plus(movie.posterPath)).into(binding.imageView)
-            with(binding){
+            with(binding) {
                 voteAverageTV.text = movie.voteAverage?.format(1)
                 cardView.setOnClickListener {
                     movieItemClickListener.movieItemClicked(movie)

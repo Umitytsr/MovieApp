@@ -1,5 +1,6 @@
 package com.umitytsr.movieapp.domain.Extensions
 
+import com.umitytsr.movieapp.data.model.favorite.Favorite
 import com.umitytsr.movieapp.data.model.movie.ResultMovie
 import com.umitytsr.movieapp.data.model.series.Result
 import com.umitytsr.movieapp.domain.model.Movie
@@ -37,6 +38,32 @@ fun List<Result>.toTvSeries(): List<Movie>{
             voteAverage = it.voteAverage
         )
     }
+}
+
+fun Movie.toFavorite(): Favorite {
+    return Favorite(
+        backdropPath = this.backdropPath,
+        genreİds = this.genreİds,
+        id = this.id,
+        overview = this.overview,
+        posterPath = this.posterPath,
+        releaseDate = this.releaseDate,
+        title = this.title,
+        voteAverage = this.voteAverage,
+    )
+}
+
+fun Favorite.toMovieForFavorite(): Movie {
+    return Movie(
+        backdropPath = this.backdropPath,
+        genreİds = this.genreİds,
+        id = this.id,
+        overview = this.overview,
+        posterPath = this.posterPath,
+        releaseDate = this.releaseDate,
+        title = this.title,
+        voteAverage = this.voteAverage
+    )
 }
 
 fun Double.format(digits: Int): String {
