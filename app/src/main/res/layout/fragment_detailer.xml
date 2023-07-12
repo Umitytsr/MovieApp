@@ -16,7 +16,7 @@
         <ImageView
             android:id="@+id/backdropImageView"
             android:layout_width="match_parent"
-            android:layout_height="300dp"
+            android:layout_height="wrap_content"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -108,7 +108,9 @@
             android:background="@drawable/radio_flat_selector"
             android:button="@android:color/transparent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintBottom_toBottomOf="@+id/backdropImageView" />
+            app:layout_constraintTop_toTopOf="@+id/dateCardView"
+            app:layout_constraintBottom_toBottomOf="@+id/dateCardView"
+            />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.core.widget.NestedScrollView>
