@@ -66,6 +66,32 @@ fun Favorite.toMovieForFavorite(): Movie {
     )
 }
 
+fun ResultMovie.toMovieForPaging(): Movie {
+    return Movie(
+        backdropPath = this.backdropPath,
+        genreİds = this.genreİds,
+        id = this.id,
+        overview = this.overview,
+        posterPath = this.posterPath,
+        releaseDate = this.releaseDate,
+        title = this.title,
+        voteAverage = this.voteAverage,
+    )
+}
+
+fun ResultTvSeries.toTvSeriesForPaging(): Movie {
+    return Movie(
+        backdropPath = this.backdropPath,
+        genreİds = this.genreİds,
+        id = this.id,
+        overview = this.overview,
+        posterPath = this.posterPath,
+        releaseDate = this.firstAirDate,
+        title = this.name,
+        voteAverage = this.voteAverage,
+    )
+}
+
 fun Double.format(digits: Int): String {
     val df = DecimalFormat()
     df.decimalFormatSymbols = DecimalFormatSymbols(Locale.US)

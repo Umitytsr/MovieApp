@@ -10,10 +10,11 @@ import com.umitytsr.movieapp.data.model.movie.ResultMovie
 import com.umitytsr.movieapp.databinding.ItemRowFavoriteBinding
 import com.umitytsr.movieapp.databinding.ItemRowMovieBinding
 import com.umitytsr.movieapp.domain.Extensions.format
+import com.umitytsr.movieapp.domain.model.Movie
 import com.umitytsr.movieapp.util.Constants
 
-class MoviePagerAdapter() :
-    PagingDataAdapter<ResultMovie, MoviePagerAdapter.MovieViewHolder>(MOVIE_COMPARATOR) {
+class MoviePagerAdapter:
+    PagingDataAdapter<Movie, MoviePagerAdapter.MovieViewHolder>(MOVIE_COMPARATOR) {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MovieViewHolder {
         val layoutInflater = LayoutInflater.from(parent.context)
         val binding = ItemRowFavoriteBinding.inflate(layoutInflater, parent, false)
@@ -28,7 +29,7 @@ class MoviePagerAdapter() :
 
     inner class MovieViewHolder(private val binding: ItemRowFavoriteBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        fun bind(movie: ResultMovie) {
+        fun bind(movie: Movie) {
             Glide.with(binding.root).load(Constants.IMAGE_URL.plus(movie.posterPath))
                 .into(binding.imageView)
             with(binding) {
@@ -38,13 +39,13 @@ class MoviePagerAdapter() :
     }
 
     companion object {
-        private val MOVIE_COMPARATOR = object : DiffUtil.ItemCallback<ResultMovie>() {
-            override fun areItemsTheSame(oldItem: ResultMovie, newItem: ResultMovie): Boolean {
+        private val MOVIE_COMPARATOR = object : DiffUtil.ItemCallback<Movie>() {
+            override fun areItemsTheSame(oldItem: Movie, newItem: Movie): Boolean {
                 // Id is unique.
                 return oldItem.title == newItem.title
             }
 
-            override fun areContentsTheSame(oldItem: ResultMovie, newItem: ResultMovie): Boolean {
+            override fun areContentsTheSame(oldItem: Movie, newItem: Movie): Boolean {
                 return oldItem == newItem
             }
         }

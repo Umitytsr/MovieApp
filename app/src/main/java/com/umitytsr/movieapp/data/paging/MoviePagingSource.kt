@@ -9,7 +9,6 @@ class MoviePagingSource(private val movieAppService: MovieAppService): PagingSou
 
 
     override suspend fun load(params: LoadParams<Int>): LoadResult<Int, ResultMovie> {
-
         return try {
             val position = params.key ?: 1
             val response = movieAppService.getAllMoviePaging(position)

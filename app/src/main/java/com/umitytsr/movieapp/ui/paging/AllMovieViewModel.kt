@@ -9,6 +9,7 @@ import androidx.paging.cachedIn
 import com.umitytsr.movieapp.data.model.movie.ResultMovie
 import com.umitytsr.movieapp.data.model.series.ResultTvSeries
 import com.umitytsr.movieapp.data.repo.PagingRepository
+import com.umitytsr.movieapp.domain.model.Movie
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 
@@ -17,11 +18,11 @@ class AllMovieViewModel @Inject constructor(private val pagingRepository: Paging
 
     val errorMessage = MutableLiveData<String>()
 
-    fun getMovieList(): LiveData<PagingData<ResultMovie>> {
+    fun getMovieList(): LiveData<PagingData<Movie>> {
         return pagingRepository.getAllMoviesPaging().cachedIn(viewModelScope)
     }
 
-    fun getTvSeriesList(): LiveData<PagingData<ResultTvSeries>> {
+    fun getTvSeriesList(): LiveData<PagingData<Movie>> {
         return pagingRepository.getAllTvSeriesPaging().cachedIn(viewModelScope)
     }
 

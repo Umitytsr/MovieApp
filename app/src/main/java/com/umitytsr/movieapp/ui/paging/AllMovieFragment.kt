@@ -16,6 +16,7 @@ import androidx.recyclerview.widget.GridLayoutManager
 import com.umitytsr.movieapp.data.model.movie.ResultMovie
 import com.umitytsr.movieapp.data.model.series.ResultTvSeries
 import com.umitytsr.movieapp.databinding.FragmentAllMovieBinding
+import com.umitytsr.movieapp.domain.model.Movie
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
@@ -59,14 +60,14 @@ class AllMovieFragment : Fragment() {
                     }
                 } else {
                     viewModel.getTvSeriesList().observe(viewLifecycleOwner) {
-                        initRecylerViewTvSeries(it)
+                        initRecylerViewMovie(it)
                     }
                 }
             }
         }
     }
 
-    private fun initRecylerViewMovie(movie: PagingData<ResultMovie>) {
+    private fun initRecylerViewMovie(movie: PagingData<Movie>) {
         val _adapter = MoviePagerAdapter()
         val spanCount = 2
         binding.pagingRecyclerView.adapter = _adapter
@@ -75,17 +76,6 @@ class AllMovieFragment : Fragment() {
             addLoadStateListener(it)
         }
         _adapter.submitData(lifecycle, movie)
-    }
-
-    private fun initRecylerViewTvSeries(tvSeries: PagingData<ResultTvSeries>) {
-        val _adapter = TvSeriesPagerAdapter()
-        val spanCount = 2
-        binding.pagingRecyclerView.adapter = _adapter
-        binding.pagingRecyclerView.layoutManager = GridLayoutManager(requireContext(), spanCount)
-        _adapter.addLoadStateListener {
-            addLoadStateListener(it)
-        }
-        _adapter.submitData(lifecycle, tvSeries)
     }
 
     fun addLoadStateListener(loadState: CombinedLoadStates) {
