@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.paging.CombinedLoadStates
 import androidx.paging.LoadState
@@ -21,7 +22,7 @@ import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
-class AllMovieFragment : Fragment() {
+class AllMovieFragment : Fragment(), MoviePagerAdapter.MoviePagerItemClickListener {
     private lateinit var binding: FragmentAllMovieBinding
     private val args: AllMovieFragmentArgs by navArgs()
     private val viewModel: AllMovieViewModel by viewModels()
@@ -68,7 +69,7 @@ class AllMovieFragment : Fragment() {
     }
 
     private fun initRecylerViewMovie(movie: PagingData<Movie>) {
-        val _adapter = MoviePagerAdapter()
+        val _adapter = MoviePagerAdapter(this@AllMovieFragment)
         val spanCount = 2
         binding.pagingRecyclerView.adapter = _adapter
         binding.pagingRecyclerView.layoutManager = GridLayoutManager(requireContext(), spanCount)
@@ -93,5 +94,11 @@ class AllMovieFragment : Fragment() {
                 Toast.makeText(requireContext(), it.error.toString(), Toast.LENGTH_LONG).show()
             }
         }
+    }
+
+    override fun movieItemClicked(movie: Movie) {
+        findNavController().navigate(
+            AllMovieFragmentDirections.actionAllMovieFragmentToDetailerFragment(movie)
+        )
     }
 }

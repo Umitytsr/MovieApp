@@ -11,9 +11,10 @@ import com.umitytsr.movieapp.databinding.ItemRowFavoriteBinding
 import com.umitytsr.movieapp.databinding.ItemRowMovieBinding
 import com.umitytsr.movieapp.domain.Extensions.format
 import com.umitytsr.movieapp.domain.model.Movie
+import com.umitytsr.movieapp.ui.home.MovieAdapter
 import com.umitytsr.movieapp.util.Constants
 
-class MoviePagerAdapter:
+class MoviePagerAdapter(private val moviePagerItemClickListener: MoviePagerItemClickListener):
     PagingDataAdapter<Movie, MoviePagerAdapter.MovieViewHolder>(MOVIE_COMPARATOR) {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MovieViewHolder {
         val layoutInflater = LayoutInflater.from(parent.context)
@@ -34,6 +35,9 @@ class MoviePagerAdapter:
                 .into(binding.imageView)
             with(binding) {
                 voteAverageTV.text = movie.voteAverage?.format(1)
+                cardViewFavorite.setOnClickListener {
+                    moviePagerItemClickListener.movieItemClicked(movie)
+                }
             }
         }
     }
@@ -49,6 +53,10 @@ class MoviePagerAdapter:
                 return oldItem == newItem
             }
         }
+    }
+
+    interface MoviePagerItemClickListener{
+        fun movieItemClicked(movie: Movie)
     }
 }
 

@@ -21,7 +21,7 @@ class FavoriteAdapter(
             Glide.with(binding.root).load(Constants.IMAGE_URL.plus(favorite.posterPath)).into(binding.imageView)
             with(binding){
                 voteAverageTV.text = favorite.voteAverage?.format(1)
-                cardView.setOnClickListener {
+                cardViewFavorite.setOnClickListener {
                     favoriteItemClickListener.favoriteItemClicked(favorite)
                 }
             }
