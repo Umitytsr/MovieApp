@@ -10,7 +10,7 @@
 
     <TextView
         android:id="@+id/populerMovieText"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="15dp"
         android:layout_marginTop="15dp"
@@ -19,9 +19,22 @@
         android:textColor="@color/white"
         android:textSize="23sp"
         app:layout_constraintBottom_toTopOf="@id/populerMovieRecyclerView"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/seeAllMovie"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_margin="15dp"
+        android:text="See All"
+        android:textColor="@color/red"
+        android:backgroundTint="@color/black"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toTopOf="@id/populerMovieRecyclerView"
+        app:layout_constraintTop_toTopOf="parent"
+        />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/populerMovieRecyclerView"
@@ -37,7 +50,7 @@
 
     <TextView
         android:id="@+id/populerTvSeriesText"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="15dp"
         android:layout_marginTop="15dp"
@@ -46,9 +59,23 @@
         android:textColor="@color/white"
         android:textSize="23sp"
         app:layout_constraintBottom_toTopOf="@id/populerTvSeriesRecyclerView"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/populerMovieRecyclerView" />
+
+    <Button
+        android:id="@+id/seeAllTvSeries"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_margin="15dp"
+        android:text="See All"
+        android:textColor="@color/red"
+        android:backgroundTint="@color/black"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toTopOf="@id/populerTvSeriesRecyclerView"
+        app:layout_constraintTop_toBottomOf="@id/populerMovieRecyclerView"
+
+        />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/populerTvSeriesRecyclerView"

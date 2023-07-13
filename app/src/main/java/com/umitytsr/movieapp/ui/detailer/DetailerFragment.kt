@@ -15,7 +15,6 @@ import com.umitytsr.movieapp.databinding.FragmentDetailerBinding
 import com.umitytsr.movieapp.domain.Extensions.format
 import com.umitytsr.movieapp.domain.Extensions.getReformatDate
 import com.umitytsr.movieapp.domain.model.Movie
-import com.umitytsr.movieapp.ui.home.HomeViewModel
 import com.umitytsr.movieapp.util.Constants
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest

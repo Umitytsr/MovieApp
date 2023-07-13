@@ -16,7 +16,6 @@ import com.umitytsr.movieapp.databinding.FragmentHomeBinding
 import com.umitytsr.movieapp.domain.model.Movie
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
-import kotlinx.coroutines.flow.filter
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
@@ -30,6 +29,22 @@ class HomeFragment : Fragment(), MovieAdapter.MovieItemClickListener{
         binding = FragmentHomeBinding.inflate(inflater,container,false)
         collectData()
         return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        with(binding){
+            seeAllMovie.setOnClickListener {
+                findNavController().navigate(
+                    HomeFragmentDirections.actionHomeFragmentToAllMovieFragment("a")
+                )
+            }
+            seeAllTvSeries.setOnClickListener {
+                findNavController().navigate(
+                    HomeFragmentDirections.actionHomeFragmentToAllMovieFragment("b")
+                )
+            }
+        }
     }
 
     private fun collectData(){
@@ -67,6 +82,7 @@ class HomeFragment : Fragment(), MovieAdapter.MovieItemClickListener{
                 setHasFixedSize(true)
             }
         }
+
     }
 
     override fun movieItemClicked(movie: Movie) {

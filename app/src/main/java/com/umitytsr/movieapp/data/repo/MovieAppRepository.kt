@@ -4,7 +4,6 @@ import android.content.Context
 import com.umitytsr.movieapp.data.model.favorite.Favorite
 import com.umitytsr.movieapp.data.source.local.MovieAppLocalDataSource
 import com.umitytsr.movieapp.data.source.remote.MovieAppRemoteDataSource
-import com.umitytsr.movieapp.domain.Extensions.toFavorite
 import com.umitytsr.movieapp.domain.Extensions.toMovie
 import com.umitytsr.movieapp.domain.Extensions.toTvSeries
 import com.umitytsr.movieapp.domain.model.Movie
@@ -36,10 +35,10 @@ class MovieAppRepository @Inject constructor(
         if (CheckInternet.isInternetAvailable(context)) {
             val propertiesTvSeriesFromApi = remoteDataSource.getAllTvSeriesProperties()
             localDataSource.insertTvSeriesProperties(propertiesTvSeriesFromApi)
-            val changeTvSerie = propertiesTvSeriesFromApi.results.toTvSeries()
+            val changeTvSerie = propertiesTvSeriesFromApi.resultTvSeries.toTvSeries()
             emit(changeTvSerie)
         } else {
-            val localTvSerie = localDataSource.getAllTvSeriesPropertiesFromDb().results.toTvSeries()
+            val localTvSerie = localDataSource.getAllTvSeriesPropertiesFromDb().resultTvSeries.toTvSeries()
             emit(localTvSerie)
         }
     }

@@ -30,12 +30,12 @@ class FavoriteFragment : Fragment(), FavoriteAdapter.FavoriteItemClickListener {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        binding = FragmentFavoriteBinding.inflate(inflater,container,false)
+        binding = FragmentFavoriteBinding.inflate(inflater, container, false)
         collectData()
         return binding.root
     }
 
-    private fun collectData(){
+    private fun collectData() {
         detailerViewModel.refreshFavorites()
         viewLifecycleOwner.lifecycleScope.launch() {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
@@ -46,30 +46,22 @@ class FavoriteFragment : Fragment(), FavoriteAdapter.FavoriteItemClickListener {
         }
     }
 
-    private fun initRecylerViewMovie(favorite: List<Favorite>){
-        if (favorite.isNotEmpty()) {
-            val spanCount = 2 // Sütun sayısı
-            val adapter = FavoriteAdapter(favorite, this@FavoriteFragment)
-            val layoutManager = GridLayoutManager(requireContext(), spanCount)
-
-            binding.favoriteRecyclerView.apply {
-                this.adapter = adapter
-                this.layoutManager = layoutManager
-                setHasFixedSize(true)
-            }
-        }else{
-            with(binding){
-                favoriteEmptyText.visibility = View.VISIBLE
-                favoriteRecyclerView.visibility = View.GONE
-                allFavoritesTextView.visibility = View.GONE
-            }
+    private fun initRecylerViewMovie(favorite: List<Favorite>) {
+        val spanCount = 2 // Sütun sayısı
+        val adapter = FavoriteAdapter(favorite, this@FavoriteFragment)
+        val layoutManager = GridLayoutManager(requireContext(), spanCount)
+        binding.favoriteRecyclerView.apply {
+            this.adapter = adapter
+            this.layoutManager = layoutManager
+            setHasFixedSize(true)
         }
-
     }
 
     override fun favoriteItemClicked(favorite: Favorite) {
         findNavController().navigate(
             FavoriteFragmentDirections.actionFavoriteFragmentToDetailerFragment(
-                favorite.toMovieForFavorite()))
+                favorite.toMovieForFavorite()
+            )
+        )
     }
 }
