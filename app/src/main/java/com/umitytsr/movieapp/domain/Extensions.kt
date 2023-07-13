@@ -2,7 +2,7 @@ package com.umitytsr.movieapp.domain.Extensions
 
 import com.umitytsr.movieapp.data.model.favorite.Favorite
 import com.umitytsr.movieapp.data.model.movie.ResultMovie
-import com.umitytsr.movieapp.data.model.series.Result
+import com.umitytsr.movieapp.data.model.series.ResultTvSeries
 import com.umitytsr.movieapp.domain.model.Movie
 import java.text.DecimalFormat
 import java.text.DecimalFormatSymbols
@@ -25,7 +25,7 @@ fun List<ResultMovie>.toMovie(): List<Movie>{
     }
 }
 
-fun List<Result>.toTvSeries(): List<Movie>{
+fun List<ResultTvSeries>.toTvSeries(): List<Movie>{
     return this.map {
         Movie(
             backdropPath = it.backdropPath,
@@ -63,6 +63,32 @@ fun Favorite.toMovieForFavorite(): Movie {
         releaseDate = this.releaseDate,
         title = this.title,
         voteAverage = this.voteAverage
+    )
+}
+
+fun ResultMovie.toMovieForPaging(): Movie {
+    return Movie(
+        backdropPath = this.backdropPath,
+        genreİds = this.genreİds,
+        id = this.id,
+        overview = this.overview,
+        posterPath = this.posterPath,
+        releaseDate = this.releaseDate,
+        title = this.title,
+        voteAverage = this.voteAverage,
+    )
+}
+
+fun ResultTvSeries.toTvSeriesForPaging(): Movie {
+    return Movie(
+        backdropPath = this.backdropPath,
+        genreİds = this.genreİds,
+        id = this.id,
+        overview = this.overview,
+        posterPath = this.posterPath,
+        releaseDate = this.firstAirDate,
+        title = this.name,
+        voteAverage = this.voteAverage,
     )
 }
 

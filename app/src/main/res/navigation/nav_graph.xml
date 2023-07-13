@@ -13,6 +13,9 @@
         <action
             android:id="@+id/action_homeFragment_to_detailerFragment"
             app:destination="@id/detailerFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_allMovieFragment"
+            app:destination="@id/allMovieFragment" />
     </fragment>
     <fragment
         android:id="@+id/detailerFragment"
@@ -32,6 +35,18 @@
         tools:layout="@layout/fragment_favorite" >
         <action
             android:id="@+id/action_favoriteFragment_to_detailerFragment"
+            app:destination="@id/detailerFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/allMovieFragment"
+        android:name="com.umitytsr.movieapp.ui.paging.AllMovieFragment"
+        android:label="fragment_all_movie"
+        tools:layout="@layout/fragment_all_movie" >
+        <argument
+            android:name="string"
+            app:argType="string" />
+        <action
+            android:id="@+id/action_allMovieFragment_to_detailerFragment"
             app:destination="@id/detailerFragment" />
     </fragment>
 </navigation>

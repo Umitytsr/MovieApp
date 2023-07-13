@@ -5,7 +5,7 @@ import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import com.umitytsr.movieapp.data.model.favorite.Favorite
 import com.umitytsr.movieapp.data.model.movie.ResultMovie
-import com.umitytsr.movieapp.data.model.series.Result
+import com.umitytsr.movieapp.data.model.series.ResultTvSeries
 
 class DataBaseConverter {
     private val gson = Gson()
@@ -55,13 +55,13 @@ class DataBaseConverter {
     }
 
     @TypeConverter
-    fun fromStringToListResult(value: String): List<Result?> {
-        val listType = object : TypeToken<List<Result?>>() {}.type
+    fun fromStringToListResult(value: String): List<ResultTvSeries?> {
+        val listType = object : TypeToken<List<ResultTvSeries?>>() {}.type
         return gson.fromJson(value, listType)
     }
 
     @TypeConverter
-    fun fromListResult(list: List<Result?>): String {
+    fun fromListResult(list: List<ResultTvSeries?>): String {
         return gson.toJson(list)
     }
 

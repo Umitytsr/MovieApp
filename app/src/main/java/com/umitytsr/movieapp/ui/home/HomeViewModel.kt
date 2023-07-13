@@ -2,9 +2,7 @@ package com.umitytsr.movieapp.ui.home
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.umitytsr.movieapp.data.model.favorite.Favorite
 import com.umitytsr.movieapp.data.repo.MovieAppRepository
-import com.umitytsr.movieapp.domain.Extensions.toFavorite
 import com.umitytsr.movieapp.domain.model.Movie
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
@@ -20,6 +18,9 @@ class HomeViewModel @Inject constructor(private val movieAppRepository: MovieApp
     private val _propertiesMovie = MutableStateFlow<List<Movie>>(mutableListOf())
     val propertiesMovie : StateFlow<List<Movie>> = _propertiesMovie.asStateFlow()
 
+    private val _propertiesTvSeries = MutableStateFlow<List<Movie>>(mutableListOf())
+    val propertiesTvSeries : StateFlow<List<Movie>> = _propertiesTvSeries.asStateFlow()
+
     init {
         getMovieData()
         getTvSeriesData()
@@ -32,9 +33,6 @@ class HomeViewModel @Inject constructor(private val movieAppRepository: MovieApp
             }
         }
     }
-
-    private val _propertiesTvSeries = MutableStateFlow<List<Movie>>(mutableListOf())
-    val propertiesTvSeries : StateFlow<List<Movie>> = _propertiesTvSeries.asStateFlow()
 
     private fun getTvSeriesData(){
         viewModelScope.launch(Dispatchers.IO){
