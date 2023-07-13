@@ -4,7 +4,6 @@ import com.umitytsr.movieapp.data.db.MovieDao
 import com.umitytsr.movieapp.data.model.favorite.Favorite
 import com.umitytsr.movieapp.data.model.movie.MovieResponse
 import com.umitytsr.movieapp.data.model.series.SeriesResponse
-import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 
 class MovieAppLocalDataSource @Inject constructor(private val movieDao: MovieDao) {

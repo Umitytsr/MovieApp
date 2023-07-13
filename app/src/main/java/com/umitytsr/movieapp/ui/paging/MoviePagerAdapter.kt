@@ -6,12 +6,9 @@ import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.umitytsr.movieapp.data.model.movie.ResultMovie
 import com.umitytsr.movieapp.databinding.ItemRowFavoriteBinding
-import com.umitytsr.movieapp.databinding.ItemRowMovieBinding
 import com.umitytsr.movieapp.domain.Extensions.format
 import com.umitytsr.movieapp.domain.model.Movie
-import com.umitytsr.movieapp.ui.home.MovieAdapter
 import com.umitytsr.movieapp.util.Constants
 
 class MoviePagerAdapter(private val moviePagerItemClickListener: MoviePagerItemClickListener):

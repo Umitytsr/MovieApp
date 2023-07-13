@@ -8,7 +8,6 @@ import androidx.room.Query
 import com.umitytsr.movieapp.data.model.favorite.Favorite
 import com.umitytsr.movieapp.data.model.movie.MovieResponse
 import com.umitytsr.movieapp.data.model.series.SeriesResponse
-import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface MovieDao {
