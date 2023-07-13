@@ -11,13 +11,10 @@ import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.umitytsr.movieapp.data.model.favorite.Favorite
 import com.umitytsr.movieapp.databinding.FragmentFavoriteBinding
 import com.umitytsr.movieapp.domain.Extensions.toMovieForFavorite
 import com.umitytsr.movieapp.ui.detailer.DetailerViewModel
-import com.umitytsr.movieapp.ui.home.HomeViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
@@ -40,7 +37,16 @@ class FavoriteFragment : Fragment(), FavoriteAdapter.FavoriteItemClickListener {
         viewLifecycleOwner.lifecycleScope.launch() {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
                 detailerViewModel.propertiesFavorite.collectLatest {
-                    initRecylerViewMovie(it)
+                    if (it.isEmpty()){
+                        binding.emptyText.visibility = View.VISIBLE
+                        binding.favoriteRecyclerView.visibility = View.GONE
+                        binding.allFavoritesTextView.visibility = View.GONE
+                    }else {
+                        binding.emptyText.visibility = View.GONE
+                        binding.favoriteRecyclerView.visibility = View.VISIBLE
+                        binding.allFavoritesTextView.visibility = View.VISIBLE
+                        initRecylerViewMovie(it)
+                    }
                 }
             }
         }
