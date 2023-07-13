@@ -2,7 +2,6 @@ package com.umitytsr.movieapp.data.paging
 
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
-import com.umitytsr.movieapp.data.model.movie.ResultMovie
 import com.umitytsr.movieapp.data.model.series.ResultTvSeries
 import com.umitytsr.movieapp.data.service.MovieAppService
 

@@ -6,8 +6,6 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.paging.PagingData
 import androidx.paging.cachedIn
-import com.umitytsr.movieapp.data.model.movie.ResultMovie
-import com.umitytsr.movieapp.data.model.series.ResultTvSeries
 import com.umitytsr.movieapp.data.repo.PagingRepository
 import com.umitytsr.movieapp.domain.model.Movie
 import dagger.hilt.android.lifecycle.HiltViewModel

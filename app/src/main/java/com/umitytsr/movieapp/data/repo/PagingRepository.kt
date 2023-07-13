@@ -7,8 +7,6 @@ import androidx.paging.PagingConfig
 import androidx.paging.PagingData
 import androidx.paging.liveData
 import androidx.paging.map
-import com.umitytsr.movieapp.data.model.movie.ResultMovie
-import com.umitytsr.movieapp.data.model.series.ResultTvSeries
 import com.umitytsr.movieapp.data.paging.MoviePagingSource
 import com.umitytsr.movieapp.data.paging.SeriesPagingSource
 import com.umitytsr.movieapp.data.service.MovieAppService
@@ -24,7 +22,7 @@ class PagingRepository @Inject constructor(private val movieAppService: MovieApp
         return Pager(
             config = PagingConfig(
                 pageSize = Constants.NETWORK_PAGE_SIZE,
-                enablePlaceholders = false,
+                enablePlaceholders = true,
                 initialLoadSize = 2
             ),
             pagingSourceFactory = {

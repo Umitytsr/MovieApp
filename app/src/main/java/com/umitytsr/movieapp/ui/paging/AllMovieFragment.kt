@@ -14,8 +14,6 @@ import androidx.paging.CombinedLoadStates
 import androidx.paging.LoadState
 import androidx.paging.PagingData
 import androidx.recyclerview.widget.GridLayoutManager
-import com.umitytsr.movieapp.data.model.movie.ResultMovie
-import com.umitytsr.movieapp.data.model.series.ResultTvSeries
 import com.umitytsr.movieapp.databinding.FragmentAllMovieBinding
 import com.umitytsr.movieapp.domain.model.Movie
 import dagger.hilt.android.AndroidEntryPoint
@@ -49,7 +47,7 @@ class AllMovieFragment : Fragment(), MoviePagerAdapter.MoviePagerItemClickListen
 
     private fun collectData() {
         viewModel.errorMessage.observe(viewLifecycleOwner) {
-            Toast.makeText(requireContext(), it, Toast.LENGTH_SHORT).show()
+            Toast.makeText(requireContext(), "Check your Internet", Toast.LENGTH_SHORT).show()
         }
         val argument = args.string as? String
 
