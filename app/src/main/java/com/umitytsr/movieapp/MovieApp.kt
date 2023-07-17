@@ -1,7 +1,7 @@
 package com.umitytsr.movieapp
 
 import android.app.Application
-import com.google.firebase.BuildConfig
+import com.google.android.datatransport.BuildConfig
 import dagger.hilt.android.HiltAndroidApp
 import timber.log.Timber
 
@@ -18,7 +18,6 @@ class MovieApp : Application() {
                 }
             })
         }
-
         Timber.plant(Timber.DebugTree())
     }
 }
