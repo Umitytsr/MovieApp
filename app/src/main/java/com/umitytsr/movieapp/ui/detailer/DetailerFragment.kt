@@ -10,10 +10,10 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.navArgs
-import com.bumptech.glide.Glide
 import com.umitytsr.movieapp.databinding.FragmentDetailerBinding
 import com.umitytsr.movieapp.domain.Extensions.format
 import com.umitytsr.movieapp.domain.Extensions.getReformatDate
+import com.umitytsr.movieapp.domain.Extensions.loadImage
 import com.umitytsr.movieapp.domain.model.Movie
 import com.umitytsr.movieapp.util.Constants
 import dagger.hilt.android.AndroidEntryPoint
@@ -28,7 +28,7 @@ class DetailerFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         binding = FragmentDetailerBinding.inflate(inflater,container,false)
         return binding.root
     }
@@ -53,9 +53,7 @@ class DetailerFragment : Fragment() {
                 }
             }
         }
-        Glide.with(requireContext()).load(Constants.IMAGE_URL.plus(args.movie?.backdropPath))
-            .into(binding.backdropImageView)
-
+        binding.backdropImageView.loadImage(Constants.IMAGE_URL.plus(args.movie?.backdropPath))
 
         viewLifecycleOwner.lifecycleScope.launch() {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED){

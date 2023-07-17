@@ -1,5 +1,9 @@
 package com.umitytsr.movieapp.domain.Extensions
 
+import android.widget.ImageView
+import com.bumptech.glide.Glide
+import com.bumptech.glide.request.RequestOptions
+import com.umitytsr.movieapp.R
 import com.umitytsr.movieapp.data.model.favorite.Favorite
 import com.umitytsr.movieapp.data.model.movie.ResultMovie
 import com.umitytsr.movieapp.data.model.series.ResultTvSeries
@@ -90,6 +94,19 @@ fun ResultTvSeries.toTvSeriesForPaging(): Movie {
         title = this.name,
         voteAverage = this.voteAverage,
     )
+}
+
+fun ImageView.loadImage(url: String?) {
+    val placeholder = R.drawable.gray_placeholder
+    url?.let {
+        Glide.with(this.context)
+            .load(url)
+            .apply(RequestOptions())
+            .error(placeholder)
+            .into(this)
+    } ?: kotlin.run {
+        this.setImageResource(placeholder)
+    }
 }
 
 fun Double.format(digits: Int): String {
