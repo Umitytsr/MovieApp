@@ -8,9 +8,11 @@ import com.umitytsr.movieapp.domain.Extensions.toMovie
 import com.umitytsr.movieapp.domain.Extensions.toTvSeries
 import com.umitytsr.movieapp.domain.model.Movie
 import com.umitytsr.movieapp.util.CheckInternet
+import com.umitytsr.movieapp.util.Resource
 import dagger.hilt.android.qualifiers.ApplicationContext
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
+import java.lang.Exception
 import javax.inject.Inject
 
 class MovieAppRepository @Inject constructor(
@@ -19,28 +21,39 @@ class MovieAppRepository @Inject constructor(
     private val localDataSource: MovieAppLocalDataSource
     ) {
 
-    suspend fun fetchAllMovie():Flow<List<Movie>> = flow {
-        if (CheckInternet.isInternetAvailable(context)){
-            val propertiesMovieFromApi = remoteDataSource.getAllMovieProperties()
-            localDataSource.insertMovieProperties(propertiesMovieFromApi)
-            val changeMovie = propertiesMovieFromApi.results.toMovie()
-            emit(changeMovie)
-        } else {
-            val localMovie = localDataSource.getAllMoviePropertiesFromDb().results.toMovie()
-            emit(localMovie)
+    suspend fun fetchAllMovie():Flow<Resource<List<Movie>>> = flow {
+        Resource.Loading
+        try {
+            if (CheckInternet.isInternetAvailable(context)){
+                val propertiesMovieFromApi = remoteDataSource.getAllMovieProperties()
+                localDataSource.insertMovieProperties(propertiesMovieFromApi)
+                val changeMovie = propertiesMovieFromApi.results.toMovie()
+                emit(Resource.Success(changeMovie))
+            } else {
+                val localMovie = localDataSource.getAllMoviePropertiesFromDb().results.toMovie()
+                emit(Resource.Success(localMovie))
+            }
+        }catch (e:Exception){
+            Resource.Error(e)
         }
     }
 
-    suspend fun fetchAllTvSeries(): Flow<List<Movie>> = flow {
-        if (CheckInternet.isInternetAvailable(context)) {
-            val propertiesTvSeriesFromApi = remoteDataSource.getAllTvSeriesProperties()
-            localDataSource.insertTvSeriesProperties(propertiesTvSeriesFromApi)
-            val changeTvSerie = propertiesTvSeriesFromApi.resultTvSeries.toTvSeries()
-            emit(changeTvSerie)
-        } else {
-            val localTvSerie = localDataSource.getAllTvSeriesPropertiesFromDb().resultTvSeries.toTvSeries()
-            emit(localTvSerie)
+    suspend fun fetchAllTvSeries(): Flow<Resource<List<Movie>>> = flow {
+        Resource.Loading
+        try {
+            if (CheckInternet.isInternetAvailable(context)) {
+                val propertiesTvSeriesFromApi = remoteDataSource.getAllTvSeriesProperties()
+                localDataSource.insertTvSeriesProperties(propertiesTvSeriesFromApi)
+                val changeTvSerie = propertiesTvSeriesFromApi.resultTvSeries.toTvSeries()
+                emit(Resource.Success(changeTvSerie))
+            } else {
+                val localTvSerie = localDataSource.getAllTvSeriesPropertiesFromDb().resultTvSeries.toTvSeries()
+                emit(Resource.Success(localTvSerie))
+            }
+        }catch (e:Exception){
+            Resource.Error(e)
         }
+
     }
 
     fun allFavorites(): Flow<List<Favorite>> = flow {
