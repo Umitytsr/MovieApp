@@ -32,7 +32,7 @@ class MoviePagerAdapter(private val moviePagerItemClickListener: MoviePagerItemC
             with(binding) {
                 voteAverageTV.text = movie.voteAverage?.format(1)
                 cardViewFavorite.setOnClickListener {
-                    moviePagerItemClickListener.movieItemClicked(movie)
+                    moviePagerItemClickListener.movieItemClicked(movie,adapterPosition)
                 }
             }
         }
@@ -52,7 +52,7 @@ class MoviePagerAdapter(private val moviePagerItemClickListener: MoviePagerItemC
     }
 
     interface MoviePagerItemClickListener{
-        fun movieItemClicked(movie: Movie)
+        fun movieItemClicked(movie: Movie,position: Int)
     }
 }
 

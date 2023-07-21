@@ -24,45 +24,62 @@ class AllMovieFragment : Fragment(), MoviePagerAdapter.MoviePagerItemClickListen
     private lateinit var binding: FragmentAllMovieBinding
     private val args: AllMovieFragmentArgs by navArgs()
     private val viewModel: AllMovieViewModel by viewModels()
+    private lateinit var layoutManager: GridLayoutManager
+    private var isDataCollected = false
+    private var savedScrollPosition = 0
+    private lateinit var savedMovieData: PagingData<Movie>
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         binding = FragmentAllMovieBinding.inflate(inflater, container, false)
         collectData()
         return binding.root
+    }
+
+    override fun onResume() {
+        super.onResume()
+        layoutManager.scrollToPosition(savedScrollPosition)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val argument = args.string as? String
         argument?.let { arg ->
-            if (arg.equals("a")){
+            if (arg.equals("a")) {
                 binding.allMovieTextView.text = "All Movie"
-            }else{
+            } else {
                 binding.allMovieTextView.text = "All Tv Series"
             }
         }
     }
 
     private fun collectData() {
-        viewModel.errorMessage.observe(viewLifecycleOwner) {
-            Toast.makeText(requireContext(), "Check your Internet", Toast.LENGTH_SHORT).show()
-        }
-        val argument = args.string as? String
+        if (!isDataCollected) {
+            viewModel.errorMessage.observe(viewLifecycleOwner) {
+                Toast.makeText(requireContext(), "Check your Internet", Toast.LENGTH_SHORT).show()
+            }
+            val argument = args.string as? String
 
-        lifecycleScope.launch {
-            argument?.let { arg ->
-                if (arg == "a") {
-                    viewModel.getMovieList().observe(viewLifecycleOwner) {
-                        initRecylerViewMovie(it)
-                    }
-                } else {
-                    viewModel.getTvSeriesList().observe(viewLifecycleOwner) {
-                        initRecylerViewMovie(it)
+            lifecycleScope.launch {
+                argument?.let { arg ->
+                    if (arg == "a") {
+                        viewModel.getMovieList().observe(viewLifecycleOwner) {
+                            savedMovieData = it
+                            initRecylerViewMovie(it)
+                        }
+                    } else {
+                        viewModel.getTvSeriesList().observe(viewLifecycleOwner) {
+                            savedMovieData = it
+                            initRecylerViewMovie(it)
+                        }
                     }
                 }
             }
+            isDataCollected = true
+        } else {
+            initRecylerViewMovie(savedMovieData)
+            layoutManager.scrollToPosition(savedScrollPosition)
         }
     }
 
@@ -70,7 +87,8 @@ class AllMovieFragment : Fragment(), MoviePagerAdapter.MoviePagerItemClickListen
         val _adapter = MoviePagerAdapter(this@AllMovieFragment)
         val spanCount = 2
         binding.pagingRecyclerView.adapter = _adapter
-        binding.pagingRecyclerView.layoutManager = GridLayoutManager(requireContext(), spanCount)
+        layoutManager = GridLayoutManager(requireContext(), spanCount)
+        binding.pagingRecyclerView.layoutManager = layoutManager
         _adapter.addLoadStateListener {
             addLoadStateListener(it)
         }
@@ -94,7 +112,8 @@ class AllMovieFragment : Fragment(), MoviePagerAdapter.MoviePagerItemClickListen
         }
     }
 
-    override fun movieItemClicked(movie: Movie) {
+    override fun movieItemClicked(movie: Movie, position: Int) {
+        savedScrollPosition = position
         findNavController().navigate(
             AllMovieFragmentDirections.actionAllMovieFragmentToDetailerFragment(movie)
         )
