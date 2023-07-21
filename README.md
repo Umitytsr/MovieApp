@@ -26,5 +26,5 @@ With Paging 3 support, I tried to learn the pagination feature by sending reques
 ## Screens
 | Home Screen | All Movie Screen | Alll Tv Series Screen | Favorites Screen | Detailer Screen |
 | --- | --- | --- | --- |--- |
-| <img src="screenshots/homesFragment.png" width=150/> | <img src="screenshots/allMovie.png" width=150/> | <img src="screenshots/allTvSeries.png" width=150/> | <img src="screenshots/favoriteFragment.png" width=150/> | <img src="screenshots/detailerFragment.png" width=150/> |
+| <img src="screenshots/homeFragment.png" width=150/> | <img src="screenshots/allMovie.png" width=150/> | <img src="screenshots/allTvSeries.png" width=150/> | <img src="screenshots/favoriteFragment.png" width=150/> | <img src="screenshots/detailerFragment.png" width=150/> |
 
