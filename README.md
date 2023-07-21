@@ -1,5 +1,5 @@
 # MovieApp
-**The MovieScope app is a application where you can follow the trends of popular movies and TV series, find out more information and add your favorites to your list. Paging 3 support was also added later.
+**The MovieApp is a application where you can follow the trends of popular movies and TV series, find out more information and add your favorites to your list. Paging 3 support was also added later.
 With Paging 3 support, I tried to learn the pagination feature by sending requests to the API twice.** 
 
 [API URL](https://developers.themoviedb.org/3/getting-started/introduction)
